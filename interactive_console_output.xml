@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20230514 00:09:31.591" rpa="false" schemaversion="3">
+<suite id="s1" name="Robot Interactive Console" source="c:\Users\imarciano\.vscode\extensions\robocorp.robotframework-lsp-1.10.1\src\robotframework_ls\vendored\robotframework_interactive\robot_interactive_console.robot">
+<test id="s1-t1" name="Default Task/Test" line="5">
+<kw name="Interpreter Main Loop" library="MainLoop">
+<kw name="Get Element" library="XML">
+<arg>id:receipt</arg>
+<doc>Returns an element in the ``source`` matching the ``xpath``.</doc>
+<msg timestamp="20230514 00:10:04.404" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: 'id:receipt'</msg>
+<status status="FAIL" starttime="20230514 00:10:04.403" endtime="20230514 00:10:04.405"/>
+</kw>
+<status status="PASS" starttime="20230514 00:09:31.624" endtime="20230514 00:13:22.458"/>
+</kw>
+<status status="PASS" starttime="20230514 00:09:31.624" endtime="20230514 00:13:22.459"/>
+</test>
+<status status="PASS" starttime="20230514 00:09:31.592" endtime="20230514 00:13:22.459"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot Interactive Console">Robot Interactive Console</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20230509 23:05:42.784" rpa="true" schemaversion="3">
+<suite id="s1" name="Tasks" source="c:\Users\imarciano\Desktop\my-second-robot\tasks.robot">
+<test id="s1-t1" name="Order robots from RobotSpareBinIndustries Inc" line="17">
+<kw name="Download order file">
+<kw name="Download" library="RPA.HTTP">
+<arg>https://robotsparebinindustries.com/orders.csv</arg>
+<arg>overwrite=${True}</arg>
+<doc>An alias for the ``HTTP Get`` keyword.</doc>
+<msg timestamp="20230509 23:05:45.109" level="INFO">Creating a new HTTP session</msg>
+<msg timestamp="20230509 23:05:45.111" level="INFO">Creating Session using : alias=rpasession_alias.httpsrobotsparebinindustries.com, url=https://robotsparebinindustries.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230509 23:05:45.106" endtime="20230509 23:05:46.002"/>
+</kw>
+<status status="PASS" starttime="20230509 23:05:45.106" endtime="20230509 23:05:46.002"/>
+</kw>
+<kw name="Get Orders">
+<kw name="Read table from CSV" library="RPA.Tables">
+<var>${orders}</var>
+<arg>orders.csv</arg>
+<arg>header=${True}</arg>
+<doc>Read a CSV file as a table.</doc>
+<msg timestamp="20230509 23:05:46.010" level="INFO">${orders} = Table(columns=['Order number', 'Head', 'Body', 'Legs', 'Address'], rows=20)</msg>
+<status status="PASS" starttime="20230509 23:05:46.004" endtime="20230509 23:05:46.010"/>
+</kw>
+<return>
+<value>${orders}</value>
+<status status="PASS" starttime="20230509 23:05:46.010" endtime="20230509 23:05:46.010"/>
+</return>
+<status status="PASS" starttime="20230509 23:05:46.003" endtime="20230509 23:05:46.010"/>
+</kw>
+<kw name="Open the robot orders web">
+<kw name="Open Available Browser" library="RPA.Browser.Selenium">
+<arg>https://robotsparebinindustries.com/#/robot-order</arg>
+<doc>Attempts to open a browser on the user's device from a set of
+supported browsers. Automatically downloads a corresponding webdriver
+if none is already installed.</doc>
+<msg timestamp="20230509 23:05:46.012" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20230509 23:05:46.022" level="INFO">Applicable driver not found; attempting to install with Selenium Manager (Beta)</msg>
+<msg timestamp="20230509 23:05:47.224" level="INFO">Created Chrome browser with arguments: --disable-dev-shm-usage --disable-web-security --allow-running-insecure-content --no-sandbox</msg>
+<msg timestamp="20230509 23:05:47.224" level="INFO" html="true">&lt;p&gt;Attempted combinations:&lt;/p&gt;&lt;div class="doc"&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Browser&lt;/th&gt;&lt;th&gt;Download&lt;/th&gt;&lt;th&gt;Error&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg timestamp="20230509 23:05:47.224" level="INFO">Opening url 'https://robotsparebinindustries.com/#/robot-order'</msg>
+<status status="PASS" starttime="20230509 23:05:46.011" endtime="20230509 23:05:48.558"/>
+</kw>
+<status status="PASS" starttime="20230509 23:05:46.011" endtime="20230509 23:05:48.559"/>
+</kw>
+<kw name="Close the annoying modal">
+<kw name="Wait Until Element Is Visible" library="RPA.Browser.Selenium">
+<arg>css:#root &gt; div &gt; div.modal &gt; div &gt; div &gt; div &gt; div &gt; div &gt; button.btn.btn-dark</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20230509 23:05:48.560" endtime="20230509 23:05:48.579"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>css:#root &gt; div &gt; div.modal &gt; div &gt; div &gt; div &gt; div &gt; div &gt; button.btn.btn-dark</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230509 23:05:48.580" level="INFO">Clicking button 'css:#root &gt; div &gt; div.modal &gt; div &gt; div &gt; div &gt; div &gt; div &gt; button.btn.btn-dark'.</msg>
+<status status="PASS" starttime="20230509 23:05:48.579" endtime="20230509 23:05:48.618"/>
+</kw>
+<status status="PASS" starttime="20230509 23:05:48.559" endtime="20230509 23:05:48.619"/>
+</kw>
+<kw name="Fill the form">
+<arg>$orders</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>id:head</arg>
+<arg>${orders}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20230509 23:05:48.621" level="FAIL">String '${orders}' used with invalid index 'Head'. To use '[Head]' as a literal value, it needs to be escaped like '\[Head]'.</msg>
+<status status="FAIL" starttime="20230509 23:05:48.620" endtime="20230509 23:05:48.622"/>
+</kw>
+<status status="FAIL" starttime="20230509 23:05:48.619" endtime="20230509 23:05:48.623"/>
+</kw>
+<status status="FAIL" starttime="20230509 23:05:45.105" endtime="20230509 23:05:48.624">String '${orders}' used with invalid index 'Head'. To use '[Head]' as a literal value, it needs to be escaped like '\[Head]'.</status>
+</test>
+<doc>Orders robots from RobotSpareBin Industries Inc.
+Saves the order HTML receipt as a PDF file.
+Saves the screenshot of the ordered robot.
+Embeds the screenshot of the robot to the PDF receipt.
+Creates ZIP archive of the receipts and the images.
+</doc>
+<status status="FAIL" starttime="20230509 23:05:42.791" endtime="20230509 23:05:48.625"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
